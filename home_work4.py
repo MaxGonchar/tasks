@@ -29,8 +29,8 @@ class Matrix:
         return m, n
 
     def transpose(self):
-        t_arr = list(map(list, (zip(*self.bag_of_bags))))
-        return t_arr
+        self.bag_of_bags = list(map(list, (zip(*self.bag_of_bags))))
+        return self.bag_of_bags
 
     @classmethod
     def create_transposed(cls, matr):
@@ -52,6 +52,7 @@ output(matrix_1.bag_of_bags, 'Значения в экземпляре клас�
 print(f'Размер матрици (стр, столб) {matrix_1.size(), type(matrix_1.size())}\n')
 
 output(matrix_1.transpose(), 'Транспонированная матрица')
+output(matrix_1.bag_of_bags, 'Метод изменяет экземпляр')
 
 matrix_2 = Matrix.create_transposed(arr)
 output(matrix_2.bag_of_bags, 'Матрица в новом экземпляре, созданном classmethod')
