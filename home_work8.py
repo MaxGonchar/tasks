@@ -22,16 +22,14 @@ URLS = ["http://docs.python-requests.org/",
 
 async def get_request(url: str) -> None:
     t = time()
-    async with aiohttp.ClientSession() as session:
-        # verify_ssl=False использую, т.к. имею конфликт с ssl
-        async with session.get(url, verify_ssl=False) as response:
-            print(f"Resource '{url}' "
-                  f"request took some {'%.3f' % (time() - t)} sec,"
-                  f" response status - {response.status}")
+    # verify_ssl=False использую, т.к. имею конфликт с ssl
+    async with aiohttp.ClientSession() as session, session.get(url, verify_ssl=False) as response:
+        print(f"Resource '{url}' "
+              f"request took some {'%.3f' % (time() - t)} sec,"
+              f" response status - {response.status}")
 
 
 if __name__ == '__main__':
-
     start = time()
 
     loop = asyncio.get_event_loop()
